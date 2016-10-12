@@ -1,23 +1,27 @@
 from bottle import route, run, view, static_file, error
-from db import Sessions
+from utils.log import getLogger
+from service.userservice import addUser
 
-session = Sessions()
+logger = getLogger('app')
+
 
 @route('/')
 @view('index')
 def hello():
     name = 'world'
-#    session = Sessions()
-    print('index session :', session.session)
     return dict(title=name)
 
 
 @route('/article')
 @view('article')
 def article():
-#    session = Sessions()
-    print('article session :', session.session)
     return dict(title='hh')
+
+
+@route('/add')
+def add():
+    addUser()
+    return 'add ok'
 
 
 # static file

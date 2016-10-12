@@ -1,1 +1,4 @@
+env
 envs
+*.log
+**/__pycache__

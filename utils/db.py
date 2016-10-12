@@ -1,16 +1,24 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, DateTime, Integer, String, ForeignKey, create_engine
 from sqlalchemy.orm import sessionmaker
+from contextlib import contextmanager
 
 engine = create_engine('mysql://root:123456@127.0.0.1:3306/py_tuto', echo=True)
 Base = declarative_base()
-Session = sessionmaker(bind=engine)
 
 
-class Sessions:
-
-    def __init__(self):
-        self.session = Session()
+@contextmanager
+def sessionScope():
+    Session = sessionmaker(bind=engine, autoflush=False)
+    session = Session()
+    try:
+        yield session
+        session.commit()
+    except:
+        session.rollback()
+        raise
+    finally:
+        session.close()
 
 
 class User(Base):
