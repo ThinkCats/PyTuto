@@ -17,6 +17,10 @@ def hello():
 def article():
     return dict(title='hh')
 
+@route('/post')
+@view('post')
+def post():
+	return dict(title='xx')
 
 @route('/add')
 def add():

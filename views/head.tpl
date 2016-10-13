@@ -4,8 +4,8 @@
     <title>
         {{title}}
     </title>
-    <link rel="stylesheet" type="text/css" href="/static/custom.css" />
-    <script type="text/javascript" src="/static/jquery.js" ></script>
-    <script type="text/javascript" src="/static/slider.js" ></script>
-	<script type="text/javascript" src="/static/comment.js" ></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <script type="text/javascript" src="/static/js/jquery.js" ></script>
+    <script type="text/javascript" src="/static/js/slider.js" ></script>
+	<script type="text/javascript" src="/static/js/comment.js" ></script>
 </head>
