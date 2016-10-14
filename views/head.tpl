@@ -5,6 +5,7 @@
         {{title}}
     </title>
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="stylesheet" href="/static/editor/css/editormd.css" />
     <script type="text/javascript" src="/static/js/jquery.js" ></script>
     <script type="text/javascript" src="/static/js/slider.js" ></script>
 	<script type="text/javascript" src="/static/js/comment.js" ></script>

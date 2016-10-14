@@ -18,12 +18,15 @@
                     <li>hehe</li><li>new</li></ul>
                 </div>
             </div>
-            <form>
+            <form method="post" action="/post">
+            <div class="title-div">
+                Title <input type="text" class="title-input" name="title" />
+            </div>
             <div id="test-editormd">
                 <textarea style="display:none;"></textarea>
             </div>
             <div style="width:90%;margin: 10px auto;">
-            <input type="submit" name="submit" value="提交表单 Submit" style="padding: 5px;" /> 
+            <input type="submit" onclick="convert()" name="submit" value="提交表单 Submit" style="padding: 5px;" />
             </div>               
             </form>
         </div>

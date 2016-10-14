@@ -147,3 +147,12 @@ body {
 .btns button:hover, .btn:hover {
     background: #f6f6f6;
 }
+
+.title-div {
+    width:90%; margin:0 auto; padding-bottom: 1rem;
+}
+
+.title-input {
+    height: 2rem;
+    width: 20rem;
+}

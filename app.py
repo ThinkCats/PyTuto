@@ -1,6 +1,8 @@
-from bottle import route, run, view, static_file, error
+from bottle import route, run, view, static_file, error, post, request
 from utils.log import getLogger
 from service.userservice import addUser
+from service.articleservice import add_article, get_article_list, get_article_detail
+from utils.db import Article
 
 logger = getLogger('app')
 
@@ -9,18 +11,37 @@ logger = getLogger('app')
 @view('index')
 def hello():
     name = 'world'
-    return dict(title=name)
+    article_list = get_article_list()
+    return dict(title=name, articles=article_list)
 
 
-@route('/article')
+@route('/article/<id>.html')
 @view('article')
-def article():
-    return dict(title='hh')
+def article(id):
+    logger.info('article id: %s' % id)
+    article = get_article_detail(id)
+    logger.info('article :%s' % article)
+    return dict(title='hh', article=article)
 
-@route('/post')
+
+@route('/new')
 @view('post')
+def new():
+    return dict(title='xx')
+
+
+@post('/post')
 def post():
-	return dict(title='xx')
+    title = request.forms.get('title')
+    markdown = request.forms.get('test-editormd-markdown-doc')
+    html = request.forms.get('test-editormd-html-code')
+    article = Article()
+    article.title = title
+    article.markdown = markdown
+    article.html = html
+    add_article(article)
+    return 'hhh'
+
 
 @route('/add')
 def add():

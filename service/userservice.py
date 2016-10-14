@@ -1,4 +1,5 @@
-from utils.db import User,sessionScope
+from utils.db import User, sessionScope
+
 
 def addUser():
     with sessionScope() as session:
@@ -7,4 +8,3 @@ def addUser():
         user.nickname = '什么呢'
         user.password = 'ddddd'
         session.add(user)
-
