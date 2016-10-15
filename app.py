@@ -32,9 +32,10 @@ def new():
 
 @post('/post')
 def post():
-    title = request.forms.get('title')
-    markdown = request.forms.get('test-editormd-markdown-doc')
-    html = request.forms.get('test-editormd-html-code')
+    form_value = request.POST.decode('utf-8')
+    title = form_value.get('title')
+    markdown = form_value.get('test-editormd-markdown-doc')
+    html = form_value.get('test-editormd-html-code')
     article = Article()
     article.title = title
     article.markdown = markdown

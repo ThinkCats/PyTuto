@@ -1,4 +1,5 @@
 <div class="mod-archive__item">
+    % if len(articles) > 0:
     % for item in articles:
     % year_ = item[0]
 	<div id="{{ year_ }}" class="mod-archive__year">{{ year_ }}</div>
@@ -16,4 +17,10 @@
     %   end
 	</ul>
     % end
+    % else:
+	<ul class="mod-archive__list">
+        No Article
+    </ul>
+    % end
+
 </div>
