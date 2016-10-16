@@ -1,4 +1,5 @@
-from bottle import route, run, view, static_file, error, post, request, redirect
+from bottle import route, run, view, static_file, error, post, request, redirect, default_app
+from paste import httpserver
 from utils.log import getLogger
 from service.userservice import addUser
 from service.articleservice import add_article, get_article_list, get_article_detail
@@ -69,4 +70,6 @@ def error500(error):
     return 'server error'
 
 if __name__ == '__main__':
-    run(host='localhost', port=8000, debug=True, reloader=True)
+    application = default_app()
+    httpserver.serve(application,host='0.0.0.0',port=8000)
+    #run(host='localhost', port=8000)
