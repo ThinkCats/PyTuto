@@ -1,5 +1,5 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, DateTime, Integer, String, ForeignKey, create_engine
+from sqlalchemy import Column, DateTime, Integer, String, Text,  ForeignKey, create_engine
 from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
 import datetime
@@ -40,7 +40,8 @@ class Article(Base):
     id = Column('article_id', Integer, primary_key=True)
     title = Column(String(40))
     markdown = Column(String(6000))
-    html = Column(String(10000))
+    html = Column(Text)
+    preview = Column(Text)
     createTime = Column(DateTime,default=datetime.datetime.now)
     updateTime = Column(DateTime, onupdate=datetime.datetime.now)
 

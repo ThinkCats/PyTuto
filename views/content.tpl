@@ -3,8 +3,8 @@
 		<h1 class="mod-post__title">{{ article.title }}</h1>
 	</header>
 	<div class="mod-post__entry wzulli">
-        <div class="markdown-body">
-            {{ !article.html }}
+        <div class="markdown-body  editormd-preview-container">
+            {{ !article.preview}}
         </div>
 	</div>
 	<div class="mod-post__meta">

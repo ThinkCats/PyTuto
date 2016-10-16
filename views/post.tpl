@@ -11,23 +11,17 @@
             <header>
                 <h1>Simple example</h1>
             </header>
-            <div style="display:none">
-                <div> preview </div>
-                <div class="markdown-body">
-                    <h1 id="h1-hehe"><a name="hehe" class="reference-link"></a><span class="header-link octicon octicon-link"></span>hehe</h1><ul>
-                    <li>hehe</li><li>new</li></ul>
+            <form id="forms" method="post" action="/post">
+                <div class="title-div">
+                    Title <input type="text" class="title-input" name="title" />
                 </div>
-            </div>
-            <form method="post" action="/post">
-            <div class="title-div">
-                Title <input type="text" class="title-input" name="title" />
-            </div>
-            <div id="test-editormd">
-                <textarea style="display:none;"></textarea>
-            </div>
-            <div style="width:90%;margin: 10px auto;">
-            <input type="submit" onclick="convert()" name="submit" value="提交表单 Submit" style="padding: 5px;" />
-            </div>               
+                <div id="content">
+                    <textarea style="display:none;" ></textarea>
+                </div>
+                <div style="width:90%;margin: 10px auto;">
+                    <input type="hidden" id="preview-html" name="preview-html">
+                    <input type="submit" onclick="submits()" name="submit" value="提交" style="padding: 5px;" />
+                </div>
             </form>
         </div>
         <script src="static/js/jquery.js"></script>
@@ -35,12 +29,16 @@
         <script>
             var testEditor;
             $(function(){
-                testEditor = editormd("test-editormd",{
+                testEditor = editormd("content",{
 					width   : "90%",
                     height  : 640,
                     syncScrolling : "single",
                     path    : "../static/editor/lib/",
-                    saveHTMLToTextarea : true
+                    saveHTMLToTextarea : true,
+                    onchange: function(){
+                        console.log('preview data:',testEditor.getPreviewedHTML())
+                        $('#preview-html').val(testEditor.getPreviewedHTML())
+                    }
                 })
             })
 
@@ -52,6 +50,12 @@
                 console.log('html:',html_text);
                 console.log('preview:', preview);
             }
+
+            function submits(){
+                console.log('....')
+                $('#content').submit()
+            }
+
         </script>
 	</body>
 </html>

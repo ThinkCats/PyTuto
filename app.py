@@ -1,4 +1,4 @@
-from bottle import route, run, view, static_file, error, post, request
+from bottle import route, run, view, static_file, error, post, request, redirect
 from utils.log import getLogger
 from service.userservice import addUser
 from service.articleservice import add_article, get_article_list, get_article_detail
@@ -34,14 +34,16 @@ def new():
 def post():
     form_value = request.POST.decode('utf-8')
     title = form_value.get('title')
-    markdown = form_value.get('test-editormd-markdown-doc')
-    html = form_value.get('test-editormd-html-code')
+    markdown = form_value.get('content-markdown-doc')
+    html = form_value.get('content-html-code')
+    preview = form_value.get('preview-html')
     article = Article()
     article.title = title
     article.markdown = markdown
     article.html = html
+    article.preview = preview
     add_article(article)
-    return 'hhh'
+    redirect('/')
 
 
 @route('/add')
