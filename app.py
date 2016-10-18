@@ -25,7 +25,7 @@ def article(id):
     return dict(title='hh', article=article)
 
 
-@route('/new')
+@route('/new.html')
 @view('post')
 def new():
     return dict(title='xx')
