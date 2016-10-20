@@ -1,7 +1,7 @@
 from bottle import Bottle, default_app
 from waitress import serve
-from controller.route import app as AppView
-from controller.api import app as Api
+from controller.route import app as AppView # 引入加载
+from controller.api import app as Api # 引入加载
 from utils.contexts import SingletonClass
 
 App = SingletonClass().app
