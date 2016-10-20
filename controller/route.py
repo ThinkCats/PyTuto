@@ -1,10 +1,11 @@
-from bottle import Bottle, view, static_file
+from bottle import view, static_file
 from utils.log import getLogger
 from service.articleservice import get_article_list, get_article_detail
 from utils.db import Article
 from utils.auth import auth_check
+from utils.contexts import SingletonClass
 
-app = Bottle()
+app = SingletonClass().app
 route = app.route
 logger = getLogger(__name__)
 

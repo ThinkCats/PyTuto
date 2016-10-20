@@ -1,10 +1,11 @@
-from bottle import Bottle,request,response,redirect
+from bottle import request,response,redirect
 from utils.log import getLogger
 from utils.db import Article
+from utils.contexts import SingletonClass
 from service.userservice import addUser
 from service.articleservice import add_article
 
-app = Bottle()
+app = SingletonClass().app
 route = app.route
 logger = getLogger(__name__)
 
@@ -14,7 +15,7 @@ def login():
     username = form_value.get('username')
     password = form_value.get('password')
     logger.info('username: %s,password: %s' % (username, password))
-    response.set_cookie('account', username, secret='mysecret',max_age=600)
+    response.set_cookie('account', username, secret='mysecret',max_age=30)
     redirect('/new.html')
 
 
@@ -38,5 +39,3 @@ def post():
 def add():
     addUser()
     return 'add ok'
-
-
